@@ -25,9 +25,9 @@
                                 <h1 class="display-6 fw-bold">{{$course->title}}</h1>
                                 <p>{{$course->short_text}}</p>
                                 @auth
-                                    <a href="#" class="btn btn-success">الدخول للدروس</a>
+                                    <a href="{{url('courses/' . $course->slug . '/lessons')}}" class="btn btn-success">الدخول للدروس</a>
                                 @else
-                                    <a href="#" class="btn btn-danger">إشترك بالدورة</a>
+                                    <a href="{{url('courses/' . $course->slug . '/lessons')}}" class="btn btn-danger">إشترك بالدورة</a>
                                 @endauth
                             </span>
                         </div>

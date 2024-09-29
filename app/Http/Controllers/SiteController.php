@@ -52,8 +52,14 @@ class SiteController extends Controller
     {
 
         $course = Course::where('status','!=','hidden')->where('slug',$slug)->firstOrFail();
-
         return view('course',compact('course'));
 
+    }
+
+    public  function lessons($slug)
+    {
+        $course = Course::where('slug',$slug)->first();
+
+        return view('lessons',compact('course'));
     }
 }

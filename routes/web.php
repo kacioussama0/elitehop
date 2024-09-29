@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/courses',[\App\Http\Controllers\SiteController::class,'courses']);
 Route::get('/courses/{slug}',[\App\Http\Controllers\SiteController::class,'course']);
+Route::get('/courses/{slug}/lessons',[\App\Http\Controllers\SiteController::class,'lessons']);
 
 Route::resource('/dashboard/courses','App\Http\Controllers\CourseController')->names('courses');
 Route::resource('/dashboard/courses/{slug}/sections','App\Http\Controllers\SectionController')->names('sections');
