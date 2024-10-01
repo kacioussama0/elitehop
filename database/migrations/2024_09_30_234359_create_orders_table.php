@@ -18,6 +18,8 @@ return new class extends Migration
             $table->enum('status',['pending','processing','completed','canceled','unpaid'])->default('unpaid');
             $table->text('note')->nullable();
             $table->string('receipt')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

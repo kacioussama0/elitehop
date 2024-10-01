@@ -26,4 +26,9 @@ Route::resource('/dashboard/courses/{course}/sections/{section}/lessons','App\Ht
 Route::resource('/dashboard/permission', 'App\Http\Controllers\PermissionController')->only(['index','store','edit','update','destroy']);
 Route::resource('/dashboard/role', 'App\Http\Controllers\RoleController')->only(['index','store','edit','update','destroy']);
 
+Route::get('/orders',[\App\Http\Controllers\OrderController::class,'userOrders']);
+Route::get('/orders/{orderId}',[\App\Http\Controllers\OrderController::class,'userOrder']);
+Route::post('/orders/{orderId}/upload',[\App\Http\Controllers\OrderController::class,'uploadReceipt']);
+Route::post('/create-order/{courseSlug}',[\App\Http\Controllers\OrderController::class,'createOrder']);
+
 require __DIR__.'/auth.php';
