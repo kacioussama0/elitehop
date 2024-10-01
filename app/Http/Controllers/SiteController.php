@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Lesson;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
@@ -52,14 +53,23 @@ class SiteController extends Controller
     {
 
         $course = Course::where('status','!=','hidden')->where('slug',$slug)->firstOrFail();
-        return view('course',compact('course'));
+        $firstLesson = '';
+
+        if(count($course->sections)){
+            if(count($course->sections->first()->lessons)) {
+                $firstLesson = $course->sections->first()->lessons->first()->slug;
+            }
+        }
+
+
+        return view('course',compact('course','firstLesson'));
 
     }
 
-    public  function lessons($slug)
+    public  function lessons($courseSlug,$lessonSlug)
     {
-        $course = Course::where('slug',$slug)->first();
-
-        return view('lessons',compact('course'));
+        $course = Course::where('slug',$courseSlug)->first();
+        $currentLesson = Lesson::where('slug',$lessonSlug)->first();
+        return view('lessons',compact('course','currentLesson'));
     }
 }

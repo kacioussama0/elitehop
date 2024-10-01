@@ -15,7 +15,7 @@
                     <!-- Session Status -->
                     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('register') }}">
                         @csrf
 
 
@@ -55,7 +55,6 @@
                             <div class="col-md-6">
                                 <x-c-select label="المستوى الدراسي" :options="[ 'التحضيري' => 'التحضيري','الابتدائي' => 'الابتدائي','المتوسط' => 'المتوسط','الثانوي' => 'الثانوي','جامعي' => 'جامعي','تكوين' => 'تكوين']" name="school_level" id="school_level" value="{{old('school_level')}}"/>
                             </div>
-
 
                             <div class="col-md-6">
                                 <x-c-input type="password" label="كلمة السر" name="password" id="password" value="{{old('password')}}"/>

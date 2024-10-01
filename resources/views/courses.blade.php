@@ -16,24 +16,12 @@
 
 
 
-
     </style>
 
     <section id="our-courses" class="bg-secondary-subtle">
 
         <div class="container py-5">
 
-
-
-                @php
-
-                    $teachers = [
-                        ['name' => 'نورالدين حريدي','image' => Vite::asset('resources/imgs/teachers/ayoub.jpg')],
-                        ['name' => 'أمين شهاب','image' => Vite::asset('resources/imgs/teachers/amine.jpg')],
-                        ['name' => 'أسامة قاسي','image' => Vite::asset('resources/imgs/teachers/oussama.jpg')],
-                    ]
-
-                @endphp
 
 
                     <h6 class="fw-bold display-2 mb-5 d-inline-block border-bottom border-5 pb-1 border-primary">دوراتنا</h6>
