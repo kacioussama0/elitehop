@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('username',64)->unique();
             $table->string('avatar')->nullable();
             $table->string('email',128)->unique();
+            $table->text('bio')->nullable();
             $table->string('phone',15);
             $table->date('date_of_birth')->nullable();
             $table->string('place_of_birth')->nullable();

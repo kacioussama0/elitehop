@@ -78,19 +78,19 @@
 
             </ul>
 
-            <ul class="navbar-nav justify-content-center align-items-center   mb-lg-0">
+            <ul class="navbar-nav justify-content-center align-items-center mb-lg-0">
 
                 @auth
 
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown me-5">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-person-fill me-1"></i> {{Auth::user()->first_name}}
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu me-5">
                             <li><a class="dropdown-item" href="#"><i class="bi bi-mortarboard-fill"></i> دوراتي</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-dropbox"></i> طلباتي</a></li>
+                            <li><a class="dropdown-item" href="{{url('orders')}}"><i class="bi bi-dropbox"></i> طلباتي</a></li>
                             <li><a class="dropdown-item" href="#"><i class="bi bi-bell-fill"></i> الإشعارات</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-key-fill"></i> حسابي</a></li>
+                            <li><a class="dropdown-item" href="{{url('profile')}}"><i class="bi bi-key-fill"></i> حسابي</a></li>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                             <li><a class="dropdown-item" href="#" onclick="event.preventDefault();this.closest('form').submit();"><i class="bi bi-mortarboard-fill"></i> خروج</a></li>

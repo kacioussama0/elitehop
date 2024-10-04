@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Notifications\InvoicePaid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,8 +23,8 @@ class Order extends Model
 
     public function getArabicStatusAttribute($value){
         switch ($this->attributes['status']) {
-            case 'open':
-                return 'مفتوح';
+            case 'unpaid':
+                return 'غير مدفوع';
             case 'pending':
                 return 'قيد الانتظار';
             case 'processing':
@@ -33,6 +34,12 @@ class Order extends Model
             case 'completed':
                 return 'مكتمل';
         }
+    }
+
+
+    public function invoicePaid($order)
+    {
+        $this->notify(new InvoicePaid($order));
     }
 
 

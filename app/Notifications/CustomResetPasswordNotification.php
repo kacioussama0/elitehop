@@ -2,7 +2,7 @@
 
 namespace App\Notifications;
 
-use Illuminate\Auth\Notifications\ResetPassword as ResetPasswordNotification;
+
 use Illuminate\Notifications\Messages\MailMessage;
 
 class CustomResetPasswordNotification extends ResetPasswordNotification

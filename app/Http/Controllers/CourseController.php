@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -21,7 +22,20 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('dashboard.courses.create');
+        $users = User::all()->toArray();
+
+        $usersKey = array_map(function ($user) {
+            return $user['id'];
+        },$users);
+
+        $userValue = array_map(function ($user) {
+            return $user['first_name'] . ' ' . $user['last_name'];
+        },$users);
+
+        $users = array_combine($userValue,$usersKey);
+
+
+        return view('dashboard.courses.create',compact('users'));
     }
 
     /**

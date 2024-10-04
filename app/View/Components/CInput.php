@@ -14,16 +14,18 @@ class CInput extends Component
     public $type;
     public $value;
 
+    public $disabled = false;
 
     /**
      * Create a new component instance.
      */
-    public function __construct($label,$name,$type = 'text',$value='')
+    public function __construct($label,$name,$type = 'text',$value='',$disabled = false)
     {
         $this->label = $label;
         $this->name = $name;
         $this->type = $type;
         $this->value = $value;
+        $this->disabled = $disabled;
     }
 
     /**

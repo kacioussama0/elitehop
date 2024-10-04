@@ -11,7 +11,7 @@
 
         <div class="container py-5">
 
-            <div class="card  shadow w-75 mx-auto position-relative">
+            <div class="card  shadow w-50 mx-auto position-relative">
                 <h3 class="card-header bg-primary py-4"></h3>
                 <span class="w-100 d-flex flex-column align-items-center justify-content-center px-5 position-absolute start-50  translate-middle" style="background-image: url('{{ Vite::asset('resources/imgs/home/clip.svg')}}');background-repeat: no-repeat;background-position: center;top: 27px">
                     <h3 class="text-dark fw-bold my-5 display-6 text-center">إنشاء دورة</h3>
@@ -38,12 +38,8 @@
                                 <x-c-input type="text" label="وصف قصير للدورة" name="short_text" id="short_text" value="{{old('short_text')}}"/>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <x-c-input type="file" label="صورة" name="image" id="image" value="{{old('image')}}"/>
-                            </div>
-
-                            <div class="col-md-6">
-                                <x-c-select :options="$users" label="المدرس" name="teacher_id" id="teacher_id" value="{{old('teacher_id')}}"/>
                             </div>
 
                             <div class="col-md-6">
@@ -69,10 +65,7 @@
 
                             <div class="col-md-12">
                                 <x-c-select :options="[ 'مفتوح' => 'open', 'مغلق' => 'closed','قريبا'=> 'soon','مخفي'=>'hidden']" label="حالة الدورة" name="status" id="status" value="{{old('status')}}"/>
-
                             </div>
-
-
 
                         </div>
 

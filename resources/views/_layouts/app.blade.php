@@ -24,7 +24,9 @@
     @vite('resources/css/app.css')
     @livewireStyles
 </head>
-<body>
+<body class="overflow-hidden">
+
+    <x-loader/>
 
     <header>
         @include('_layouts.navbar')

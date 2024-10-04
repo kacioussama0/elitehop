@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Order;
+use App\Notifications\InvoicePaid;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
@@ -14,39 +17,18 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::all();
+        return view('dashboard.orders.index',compact('orders'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Order $order)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Order $order)
     {
-        //
+       return view('dashboard.orders.edit',compact('order'));
     }
 
     /**
@@ -54,7 +36,23 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $validatedData = $request->validate(
+            [
+                'status' => 'required',
+                'note' => 'nullable'
+            ]
+        );
+
+        if($order->update($validatedData)) {
+            (new MailMessage)
+                ->subject('شكرا لإشتراكك نتمنى لك تعلم ممتع')
+                ->greeting('!' . $order->user->full_name . 'مرحبا . ')
+                ->line('تمت الموافقة على طلبك رقم ' . $order->id)
+                ->action('إبدأ التعلم', url('/courses'))
+                ->line('منصة نخبة الأمل. Elite Hope');
+            return redirect()->to('dashboard/orders')->with('status','تم تعديل الطلب بنجاح');
+        }
+
     }
 
     /**

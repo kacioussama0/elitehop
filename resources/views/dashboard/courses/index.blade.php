@@ -61,7 +61,6 @@
                                         <td>{{$course->arabic_status}}</td>
 
                                         <td>
-                                            <livewire:create-section :course="$course" />
                                             <span class="d-flex">
 
                                                 <a href="{{route('sections.index',$course->slug)}}" class="btn btn-outline-primary me-1">الأقسام</a>

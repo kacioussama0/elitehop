@@ -9,8 +9,6 @@
 
         <div class="container py-5">
 
-{{--            <h6 class="fw-bold display-2 mb-5 d-inline-block border-bottom border-5 pb-1 border-primary">دوراتنا</h6>--}}
-
 
             <section id="course-info my-5">
                 <div class="card bg-primary text-light rounded-2 shadow border-0 p-3">
@@ -53,6 +51,7 @@
                         <h3 class="mt-5 mb-4 fw-medium">محتوى الدورة</h3>
 
                         @if(count($course->sections))
+
                             @foreach($course->sections as $key => $section)
 
                                 <div class="card mb-4 rounded-2 shadow border-0 px-3">
@@ -81,8 +80,11 @@
                     </section>
                 </div>
 
+
                 <div class="col-md-3">
-                    <section id="objectives">
+
+                    @if(!$course->requirements)
+                        <section id="objectives">
 
                         <h4 class="mt-sm-5 mb-3 fw-medium">المتطلبات</h4>
                         <p>
@@ -90,32 +92,31 @@
                         </p>
 
                     </section>
+                    @endif
 
                     @if(!empty($course->objectives))
-                    <section id="requirements">
-                        <h4 class="mt-sm-5 mb-3 fw-medium">ماذا ستتعلم ؟</h4>
+                        <section id="requirements">
+                            <h4 class="mt-sm-5 mb-3 fw-medium">ماذا ستتعلم ؟</h4>
 
-                        <div class="vstack gap-3">
+                            <div class="vstack gap-1">
+                                @foreach(explode("\n",$course->objectives) as $objective)
+                                    <div class="d-flex">
+                                        <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                                        {{$objective}}
+                                    </div>
+                                @endforeach
+                            </div>
 
-                            @foreach(explode("\n",$course->objectives) as $objective)
-
-                                <div class="d-flex">
-                                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                    {{$objective}}
-                                </div>
-                            @endforeach
-
-
-                        </div>
-
-                    </section>
+                        </section>
                     @endif
                     <section id="teacher" class="vstack align-items-start gap-2">
-                        <h4 class="mt-sm-5 mb-3 fw-medium">المدرب</h4>
-                        <img src="{{Vite::asset('resources/imgs/teachers/ayoub.jpg')}}" width="80" alt="logo-teacher" class="border border-1 border-primary rounded-circle">
-                        <a href="#">حريدي نورالدين</a>
+                        <h4 class="mt-sm-5 mb-3 fw-medium">المدرس</h4>
+
+                            <img src="{{ $course->teacher->avatar ? asset('storage/' . $course->teacher->avatar) : Vite::asset('resources/imgs/logo/logo-min.svg') }}" width="80" alt="logo-teacher" class="border border-1 border-primary rounded-circle">
+
+                        <a href="#">{{$course->teacher->full_name}}</a>
                         <p class="text-dark">
-                            مدرب في منصة نخبة الأمل ومعلم قرأن كريم وحاصل على إجازة.
+                            {{$course->teacher->bio}}
                         </p>
                     </section>
                 </div>
@@ -123,11 +124,7 @@
 
         </div>
 
-
-
-
     </section>
-
 
     </div>
 
